@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin",
+  "name": "kirov-sv-eslint-plugin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
