@@ -1,48 +1,50 @@
 # eslint-plugin-kirov-sv-plugin
 
-plogin for edit paths
+ESLint-плагин для проектов на архитектуре [Feature-Sliced Design](https://feature-sliced.design/).
 
-## Installation
+Правило `path-checker` следит, чтобы импорты **внутри одного слайса** были относительными, а абсолютные пути использовались только между слайсами и слоями. Это сохраняет изоляцию слайсов и упрощает их перенос и рефакторинг.
 
-You'll first need to install [ESLint](https://eslint.org/):
+```ts
+// src/entities/Article/ui/ArticleCard.tsx
 
-```sh
-npm i eslint --save-dev
+import { ArticleView } from 'entities/Article/model/types/article'; // ❌ свой слайс — нужен относительный путь
+import { ArticleView } from '../model/types/article';               // ✅
+import { User } from 'entities/User';                               // ✅ другой слайс
+import { Button } from 'shared/ui/Button';                          // ✅ другой слой
 ```
 
-Next, install `eslint-plugin-kirov-sv-plugin`:
+Поддерживаются слои `shared`, `entities`, `features`, `widgets`, `pages`. Пути файлов обрабатываются одинаково в Windows, Linux и macOS.
 
-```sh
-npm install eslint-plugin-kirov-sv-plugin --save-dev
+## Установка
+
+```bash
+npm install --save-dev eslint eslint-plugin-kirov-sv-plugin
 ```
 
-## Usage
+## Настройка
 
-Add `kirov-sv-plugin` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+`.eslintrc`:
 
 ```json
 {
-    "plugins": [
-        "kirov-sv-plugin"
-    ]
+  "plugins": ["kirov-sv-plugin"],
+  "rules": {
+    "kirov-sv-plugin/path-checker": "error"
+  }
 }
 ```
 
+## Правила
 
-Then configure the rules you want to use under the rules section.
+| Правило | Описание |
+|---|---|
+| [`path-checker`](docs/rules/path-checker.md) | Относительные импорты внутри одного слайса FSD |
 
-```json
-{
-    "rules": {
-        "kirov-sv-plugin/rule-name": 2
-    }
-}
+## Разработка
+
+```bash
+npm install
+npm test
 ```
 
-## Rules
-
-<!-- begin auto-generated rules list -->
-TODO: Run eslint-doc-generator to generate the rules list.
-<!-- end auto-generated rules list -->
-
-
+Тесты написаны на `RuleTester` из ESLint и покрывают POSIX- и Windows-пути.
