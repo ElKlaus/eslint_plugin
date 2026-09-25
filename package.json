@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-kirov-sv-plugin",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "ESLint-плагин для Feature-Sliced Design: относительные импорты внутри слайса",
   "main": "./lib/index.js",
   "scripts": {
@@ -23,9 +23,9 @@
   },
   "homepage": "https://github.com/ElKlaus/eslint_plugin#readme",
   "peerDependencies": {
-    "eslint": ">=8"
+    "eslint": ">=9"
   },
   "devDependencies": {
-    "eslint": "^8.57.0"
+    "eslint": "^10.11.0"
   }
 }

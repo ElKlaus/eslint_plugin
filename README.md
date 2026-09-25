@@ -23,15 +23,20 @@ npm install --save-dev eslint eslint-plugin-kirov-sv-plugin
 
 ## Настройка
 
-`.eslintrc`:
+`eslint.config.js` (ESLint 9+):
 
-```json
-{
-  "plugins": ["kirov-sv-plugin"],
-  "rules": {
-    "kirov-sv-plugin/path-checker": "error"
-  }
-}
+```js
+const kirovSv = require('eslint-plugin-kirov-sv-plugin');
+
+module.exports = [
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    plugins: { 'kirov-sv-plugin': kirovSv },
+    rules: {
+      'kirov-sv-plugin/path-checker': 'error',
+    },
+  },
+];
 ```
 
 ## Правила

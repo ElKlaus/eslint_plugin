@@ -4,7 +4,7 @@ const rule = require('../../../lib/rules/path-checker');
 const { RuleTester } = require('eslint');
 
 const ruleTester = new RuleTester({
-  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
+  languageOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 
 const ARTICLE_FILE_POSIX = '/home/user/project/src/entities/Article/ui/ArticleCard.tsx';
@@ -54,3 +54,5 @@ ruleTester.run('path-checker', rule, {
     },
   ],
 });
+
+console.log('path-checker: все тесты пройдены');
